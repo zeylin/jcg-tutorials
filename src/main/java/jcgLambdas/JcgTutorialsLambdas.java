@@ -171,7 +171,6 @@ public class JcgTutorialsLambdas {
                 .map(String::toUpperCase) // intermediate operation
                 .sorted() // intermediate
                 .forEach(System.out::println); // terminal operation
-
     }
 
 }
