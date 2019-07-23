@@ -7,22 +7,23 @@ Sample functional interfaces used below.
  */
 @FunctionalInterface
 interface InterfaceGreet {
-    public void greetings();
+    // Modifier "public" is redundant for interface methods.
+    /* public */ void greetings();
 }
 
 @FunctionalInterface
 interface InterfaceName {
-    public void name(String name);
+    void name(String name);
 }
 
 @FunctionalInterface
 interface InterfaceAdd {
-    public void add(int a, int b);
+    void add(int a, int b);
 }
 
 @FunctionalInterface
 interface InterfaceMultiply {
-    public int multiple(int x);
+    int multiple(int x);
 }
 
 /**
@@ -35,8 +36,7 @@ public class JcgAnotherLambdaTutorial {
     public static void main(String[] args) {
 
         morning();
-
-//        sampleFuncInterfacesWithLambdas();
+        sampleFunctionalInterfacesWithLambdas();
     }
 
     private static void morning() {
@@ -49,9 +49,12 @@ public class JcgAnotherLambdaTutorial {
 
         LocalDateTime now = LocalDateTime.now();
         morningInterface.morning("Jin Mi", now);
+
+        LocalDateTime someDay = LocalDateTime.of(2019, 7, 22, 8, 30);
+        morningInterface.morning("Dany", someDay);
     }
 
-    private static void sampleFuncInterfacesWithLambdas() {
+    private static void sampleFunctionalInterfacesWithLambdas() {
         // Lambda expression with no parameter.
         // With a statement block
         InterfaceGreet interfaceGreet = () -> {
@@ -62,11 +65,15 @@ public class JcgAnotherLambdaTutorial {
 //        // Same, but expression lambda (i.e. expression block)
 //        InterfaceGreet interfaceGreet = () -> System.out.println("Hello World!");
 //        interfaceGreet.greetings();
-//
-//        // Same, but using method reference
-//        InterfaceGreet interfaceGreet = JcgAnotherLambdaTutorial::greetings;
-//        interfaceGreet.greetings();
-//
+
+        // Using method reference
+        InterfaceGreet greet2 = JcgAnotherLambdaTutorial::greetings;
+        greet2.greetings();
+
+        // Same, but with lambda
+        InterfaceGreet greet3 = () -> greetings();
+        greet3.greetings();
+
 //        // Same, but using anonymous class
 //        InterfaceGreet interfaceGreet = new InterfaceGreet() {
 //            @Override
@@ -108,7 +115,7 @@ public class JcgAnotherLambdaTutorial {
     }
 
     private static void greetings() {
-        System.out.println("Hello World!");
+        System.out.println("Hello from the other side.");
     }
 
 }

@@ -5,5 +5,6 @@ import java.time.LocalDateTime;
 @FunctionalInterface
 public interface GoodMorningInterface {
 
-    public void morning(String name, LocalDateTime date);
+    // Modifier "public" is redundant for interface methods.
+    /* public */ void morning(String name, LocalDateTime date);
 }
